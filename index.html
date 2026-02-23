@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nikhilesh Kumar Dubey — Senior Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --p1: #b44fff;
+  --p2: #ff4fcb;
+  --p3: #4f8fff;
+  --p4: #ff6b6b;
+  --p5: #4fffb4;
+  --bg0: #07040f;
+  --bg1: #0d0818;
+  --bg2: #120e22;
+  --glass: rgba(255,255,255,0.04);
+  --glass2: rgba(255,255,255,0.07);
+  --glassborder: rgba(255,255,255,0.1);
+  --glassborder2: rgba(180,79,255,0.25);
+  --text: #f0eaff;
+  --text2: #b8a9d9;
+  --muted: #6b5a8a;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Outfit', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg0);
+  color: var(--text);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── ANIMATED BG ── */
+.bg-wrap {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(180,79,255,0.18) 0%, transparent 55%),
+              radial-gradient(ellipse 60% 50% at 80% 80%, rgba(255,79,203,0.14) 0%, transparent 55%),
+              radial-gradient(ellipse 50% 60% at 60% 30%, rgba(79,143,255,0.1) 0%, transparent 55%),
+              var(--bg0);
+}
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+.orb1 { width: 500px; height: 500px; background: rgba(180,79,255,0.2); top: -100px; left: -100px; animation-delay: 0s; }
+.orb2 { width: 400px; height: 400px; background: rgba(255,79,203,0.15); bottom: -80px; right: -80px; animation-delay: -4s; }
+.orb3 { width: 300px; height: 300px; background: rgba(79,143,255,0.12); top: 40%; left: 50%; animation-delay: -8s; }
+@keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(40px, 30px) scale(1.1); } }
+
+/* Noise grain */
+.bg-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4; pointer-events: none;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 52px;
+  background: rgba(7,4,15,0.6);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--glassborder);
+}
+.nav-logo {
+  font-family: var(--mono); font-weight: 700; font-size: 16px;
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 13px; color: var(--muted); text-decoration: none;
+  font-weight: 500; letter-spacing: 0.5px; transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 130px 52px 80px; text-align: center;
+}
+.hero-inner { max-width: 860px; animation: fadeUp 1s ease both; }
+
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 36px;
+  background: rgba(180,79,255,0.12);
+  border: 1px solid rgba(180,79,255,0.3);
+  font-size: 12px; font-weight: 500; color: var(--p1);
+  letter-spacing: 1px; text-transform: uppercase;
+  font-family: var(--mono);
+}
+.hero-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--p5); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero h1 {
+  font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 900;
+  line-height: 0.95; letter-spacing: -2px; margin-bottom: 18px;
+}
+.hero h1 .line1 { display: block; color: var(--text); }
+.hero h1 .line2 {
+  display: block;
+  background: linear-gradient(135deg, var(--p1) 0%, var(--p2) 50%, var(--p3) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-size: 200%; animation: gradShift 4s ease infinite alternate;
+}
+@keyframes gradShift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+.hero-sub {
+  font-family: var(--mono); font-size: 13px; color: var(--muted);
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px;
+}
+.hero-desc {
+  font-size: 1.1rem; color: var(--text2); max-width: 620px;
+  margin: 0 auto 48px; line-height: 1.8; font-weight: 400;
+}
+
+/* hero stats row */
+.hero-stats {
+  display: flex; justify-content: center; gap: 0; margin-bottom: 48px;
+  border: 1px solid var(--glassborder); border-radius: 16px;
+  background: var(--glass); backdrop-filter: blur(12px);
+  overflow: hidden; max-width: 700px; margin-left: auto; margin-right: auto;
+}
+.hstat {
+  flex: 1; padding: 22px 16px; text-align: center;
+  border-right: 1px solid var(--glassborder);
+  transition: background 0.2s;
+}
+.hstat:last-child { border-right: none; }
+.hstat:hover { background: rgba(180,79,255,0.08); }
+.hstat-num {
+  font-family: var(--mono); font-size: 1.6rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  display: block; line-height: 1; margin-bottom: 6px;
+}
+.hstat-num.g { background: linear-gradient(135deg, var(--p5), #00c896); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hstat-num.b { background: linear-gradient(135deg, var(--p3), #7bc8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hstat-num.r { background: linear-gradient(135deg, var(--p4), #ffaa6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hstat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: var(--mono); }
+
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  font-size: 13px; font-weight: 600; padding: 14px 32px;
+  border-radius: 100px; text-decoration: none; transition: all 0.25s;
+  letter-spacing: 0.5px; cursor: pointer; border: none;
+}
+.btn-grad {
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  color: #fff;
+  box-shadow: 0 0 30px rgba(180,79,255,0.35);
+}
+.btn-grad:hover { transform: translateY(-3px); box-shadow: 0 6px 40px rgba(180,79,255,0.5); }
+.btn-glass {
+  background: var(--glass2); color: var(--text);
+  border: 1px solid var(--glassborder2);
+  backdrop-filter: blur(12px);
+}
+.btn-glass:hover { transform: translateY(-3px); background: rgba(255,255,255,0.08); }
+
+/* ── SECTION BASE ── */
+.section-wrap {
+  position: relative; z-index: 1;
+  max-width: 1080px; margin: 0 auto; padding: 90px 52px;
+}
+.sec-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 10px;
+  background: linear-gradient(90deg, var(--p1), var(--p2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.sec-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+  margin-bottom: 56px; line-height: 1.1; color: var(--text);
+}
+.sec-divider {
+  width: 100%; height: 1px; position: relative; z-index: 1;
+  background: linear-gradient(90deg, transparent, rgba(180,79,255,0.3), rgba(255,79,203,0.3), transparent);
+  max-width: 1080px; margin: 0 auto;
+}
+
+/* ── GLASS CARD ── */
+.gcard {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glassborder);
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+.gcard:hover {
+  border-color: rgba(180,79,255,0.3);
+  background: var(--glass2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(180,79,255,0.1);
+}
+
+/* ── SKILLS (HERO SECTION) ── */
+.skills-hero {
+  text-align: center; margin-bottom: 64px;
+}
+.skills-hero-title {
+  font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700;
+  color: var(--text2); margin-bottom: 8px;
+}
+.skills-hero-sub {
+  font-family: var(--mono); font-size: 12px; color: var(--muted);
+  letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* Big skill category cards */
+.skills-big-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  margin-bottom: 32px;
+}
+.skill-big-card {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border-radius: 20px; padding: 32px;
+  border: 1px solid var(--glassborder);
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.skill-big-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity 0.3s;
+}
+.skill-big-card.qa::before { background: linear-gradient(90deg, var(--p3), var(--p1)); }
+.skill-big-card.ai::before { background: linear-gradient(90deg, var(--p1), var(--p2)); }
+.skill-big-card.lang::before { background: linear-gradient(90deg, var(--p5), var(--p3)); }
+.skill-big-card.tools::before { background: linear-gradient(90deg, var(--p2), var(--p4)); }
+.skill-big-card:hover::before { opacity: 1; }
+.skill-big-card:hover {
+  border-color: rgba(180,79,255,0.3); background: var(--glass2);
+  transform: translateY(-5px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+}
+.skill-cat-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.skill-cat-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.icon-qa { background: linear-gradient(135deg, rgba(79,143,255,0.2), rgba(180,79,255,0.2)); border: 1px solid rgba(79,143,255,0.3); }
+.icon-ai { background: linear-gradient(135deg, rgba(180,79,255,0.2), rgba(255,79,203,0.2)); border: 1px solid rgba(180,79,255,0.3); }
+.icon-lang { background: linear-gradient(135deg, rgba(79,255,180,0.2), rgba(79,143,255,0.2)); border: 1px solid rgba(79,255,180,0.3); }
+.icon-tools { background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(255,79,203,0.2)); border: 1px solid rgba(255,107,107,0.3); }
+.skill-cat-name { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+.skill-cat-count { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; letter-spacing: 1px; }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  font-family: var(--mono); font-size: 11px; padding: 6px 14px;
+  border-radius: 100px; font-weight: 500; transition: all 0.2s; cursor: default;
+}
+.pill:hover { transform: translateY(-2px) scale(1.05); }
+.pill-blue { background: rgba(79,143,255,0.12); color: #7bc8ff; border: 1px solid rgba(79,143,255,0.2); }
+.pill-blue:hover { background: rgba(79,143,255,0.22); box-shadow: 0 4px 20px rgba(79,143,255,0.25); }
+.pill-purple { background: rgba(180,79,255,0.12); color: #d4a0ff; border: 1px solid rgba(180,79,255,0.2); }
+.pill-purple:hover { background: rgba(180,79,255,0.22); box-shadow: 0 4px 20px rgba(180,79,255,0.25); }
+.pill-green { background: rgba(79,255,180,0.1); color: #7fffd4; border: 1px solid rgba(79,255,180,0.2); }
+.pill-green:hover { background: rgba(79,255,180,0.2); box-shadow: 0 4px 20px rgba(79,255,180,0.2); }
+.pill-pink { background: rgba(255,79,203,0.1); color: #ffaae8; border: 1px solid rgba(255,79,203,0.2); }
+.pill-pink:hover { background: rgba(255,79,203,0.2); box-shadow: 0 4px 20px rgba(255,79,203,0.2); }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: start; }
+.about-card { padding: 40px; }
+.about-card p { color: var(--text2); line-height: 1.85; margin-bottom: 18px; font-size: 0.97rem; font-weight: 400; }
+.about-card p strong { color: var(--text); font-weight: 600; }
+.about-card p .grad { background: linear-gradient(135deg, var(--p1), var(--p2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+.stats-col { display: flex; flex-direction: column; gap: 14px; }
+.mini-stat {
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 18px;
+}
+.mini-stat-num {
+  font-family: var(--mono); font-size: 1.6rem; font-weight: 700; min-width: 68px;
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.mini-stat-num.g { background: linear-gradient(135deg, var(--p5), #00d4aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.mini-stat-num.b { background: linear-gradient(135deg, var(--p3), #8ecfff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.mini-stat-num.o { background: linear-gradient(135deg, #ffb347, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.mini-stat-label { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.mini-stat-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+/* ── EXPERIENCE ── */
+.exp-stack { display: flex; flex-direction: column; gap: 20px; }
+.exp-gcard { padding: 36px 40px; }
+.exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 8px; }
+.exp-role { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+.exp-chip {
+  font-family: var(--mono); font-size: 11px; padding: 6px 14px;
+  border-radius: 100px; letter-spacing: 1px; white-space: nowrap; font-weight: 600;
+}
+.chip-live { background: rgba(79,255,180,0.1); color: var(--p5); border: 1px solid rgba(79,255,180,0.25); }
+.chip-past { background: rgba(79,143,255,0.1); color: #7bc8ff; border: 1px solid rgba(79,143,255,0.2); }
+.exp-company {
+  font-size: 0.95rem; font-weight: 600; margin-bottom: 4px;
+  background: linear-gradient(135deg, var(--p1), var(--p3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.exp-when { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 22px; letter-spacing: 1px; }
+.kpi-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.kpi {
+  padding: 8px 16px; border-radius: 10px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; gap: 8px;
+}
+.kpi-v { font-family: var(--mono); font-size: 0.9rem; font-weight: 700; }
+.kpi-v.p { background: linear-gradient(135deg,var(--p1),var(--p2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.kpi-v.g { background: linear-gradient(135deg,var(--p5),#00c8a0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.kpi-v.o { background: linear-gradient(135deg,#ffb347,#ff6b6b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.kpi-v.b { background: linear-gradient(135deg,var(--p3),#8ecfff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.kpi-l { font-size: 0.75rem; color: var(--muted); }
+.exp-ul { list-style: none; }
+.exp-ul li {
+  color: var(--text2); font-size: 0.93rem; line-height: 1.7;
+  padding: 5px 0 5px 20px; position: relative;
+}
+.exp-ul li::before {
+  content: ''; position: absolute; left: 0; top: 13px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+}
+.exp-ul li strong { color: var(--text); font-weight: 600; }
+
+/* ── PROJECTS ── */
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
+.proj-gcard { padding: 30px; position: relative; overflow: hidden; }
+.proj-glow {
+  position: absolute; width: 200px; height: 200px; border-radius: 50%;
+  top: -80px; right: -60px; pointer-events: none; opacity: 0.25;
+  filter: blur(40px); transition: opacity 0.3s;
+}
+.proj-gcard:hover .proj-glow { opacity: 0.45; }
+.glow-purple { background: var(--p1); }
+.glow-pink { background: var(--p2); }
+.glow-blue { background: var(--p3); }
+.proj-num {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  letter-spacing: 2px; margin-bottom: 14px; text-transform: uppercase;
+}
+.proj-name { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.proj-desc { font-size: 0.86rem; color: var(--text2); line-height: 1.65; margin-bottom: 18px; }
+.proj-highlights { list-style: none; margin-bottom: 18px; }
+.proj-highlights li {
+  font-size: 0.82rem; color: var(--text2); padding: 4px 0 4px 18px; position: relative;
+}
+.proj-highlights li::before {
+  content: '▸'; position: absolute; left: 0; top: 4px; font-size: 10px;
+  background: linear-gradient(135deg,var(--p5),var(--p3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.proj-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj-pill {
+  font-family: var(--mono); font-size: 10px; padding: 4px 10px;
+  border-radius: 100px; background: rgba(180,79,255,0.1); color: #d4a0ff;
+  border: 1px solid rgba(180,79,255,0.15);
+}
+
+/* ── AWARDS ── */
+.award-gcard {
+  padding: 38px 42px;
+  background: linear-gradient(135deg, rgba(255,179,71,0.06), rgba(255,107,107,0.04), rgba(180,79,255,0.05));
+  border-color: rgba(255,179,71,0.2);
+  display: flex; gap: 28px; align-items: flex-start;
+  margin-bottom: 20px;
+}
+.award-icon-wrap {
+  width: 60px; height: 60px; flex-shrink: 0;
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(255,179,71,0.15), rgba(255,107,107,0.15));
+  border: 1px solid rgba(255,179,71,0.2); font-size: 1.8rem;
+}
+.award-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; background: linear-gradient(135deg, #ffb347, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.award-org { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; }
+.award-body { font-size: 0.93rem; color: var(--text2); line-height: 1.7; margin-bottom: 16px; }
+.award-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.award-tag {
+  font-family: var(--mono); font-size: 11px; padding: 5px 14px; border-radius: 100px;
+  background: rgba(255,179,71,0.1); color: #ffcc70;
+  border: 1px solid rgba(255,179,71,0.2);
+}
+.cert-gcard {
+  padding: 26px 32px;
+  display: flex; align-items: center; gap: 20px;
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(180deg, var(--p1), var(--p2)) 1;
+}
+.cert-icon-wrap {
+  width: 50px; height: 50px; flex-shrink: 0; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  background: rgba(180,79,255,0.12); border: 1px solid rgba(180,79,255,0.2);
+}
+.cert-name { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cert-by { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.contact-card {
+  padding: 26px 20px; text-align: center; text-decoration: none;
+  border-radius: 20px; transition: all 0.3s; display: block;
+  background: var(--glass); backdrop-filter: blur(20px);
+  border: 1px solid var(--glassborder); color: var(--text);
+}
+.contact-card:hover {
+  border-color: rgba(180,79,255,0.35); background: var(--glass2);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.3), 0 0 30px rgba(180,79,255,0.1);
+}
+.contact-icon {
+  width: 48px; height: 48px; border-radius: 14px; margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+.ci-purple { background: rgba(180,79,255,0.15); border: 1px solid rgba(180,79,255,0.25); }
+.ci-blue { background: rgba(79,143,255,0.15); border: 1px solid rgba(79,143,255,0.25); }
+.ci-pink { background: rgba(255,79,203,0.15); border: 1px solid rgba(255,79,203,0.25); }
+.ci-green { background: rgba(79,255,180,0.12); border: 1px solid rgba(79,255,180,0.2); }
+.ci-orange { background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.25); }
+.contact-platform { font-weight: 700; font-size: 0.95rem; margin-bottom: 5px; }
+.contact-val { font-family: var(--mono); font-size: 10px; color: var(--muted); word-break: break-all; line-height: 1.4; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(180,79,255,0.15); padding: 28px 52px;
+  text-align: center; font-family: var(--mono); font-size: 11px;
+  color: var(--muted); letter-spacing: 1px;
+}
+footer .grad { background: linear-gradient(135deg,var(--p1),var(--p2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+
+/* ── ANIM ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+.fade-in { opacity:0; transform:translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 14px 22px; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 12px; }
+  .hero, .section-wrap { padding-left: 22px; padding-right: 22px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .skills-big-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; }
+  .hstat { min-width: 45%; }
+  .award-gcard { flex-direction: column; gap: 18px; }
+  footer { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-wrap">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NKD /</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-chip"><span class="dot"></span>Open to New Opportunities</div>
+    <h1>
+      <span class="line1">Nikhilesh Kumar</span>
+      <span class="line2">Dubey</span>
+    </h1>
+    <p class="hero-sub">Senior Software Engineer &nbsp;·&nbsp; QA Automation &nbsp;·&nbsp; Generative AI</p>
+    <p class="hero-desc">
+      4+ years engineering bulletproof test automation for enterprise e-commerce platforms.
+      Passionate about Generative AI, LangChain &amp; intelligent testing — where quality meets the future of AI.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-num">1000+</span>
+        <span class="hstat-label">Test Scripts</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num g">90%+</span>
+        <span class="hstat-label">Coverage</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num b">85–90%</span>
+        <span class="hstat-label">Manual Effort Saved</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num r">98%</span>
+        <span class="hstat-label">Defect Closure</span>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-grad">Get In Touch</a>
+      <a href="#skills" class="btn btn-glass">Explore Skills</a>
+    </div>
+  </div>
+</div>
+
+<div class="sec-divider"></div>
+
+<!-- SKILLS — HERO SECTION -->
+<div class="section-wrap fade-in" id="skills">
+  <div class="sec-eyebrow">// 01. Skills</div>
+  <div class="sec-title">Tech Stack</div>
+
+  <div class="skills-big-grid">
+
+    <div class="skill-big-card qa">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-qa">🧪</div>
+        <div>
+          <div class="skill-cat-name">QA Automation & Testing</div>
+          <div class="skill-cat-count">9 Technologies</div>
+        </div>
+      </div>
+      <div class="skill-pills">
+        <span class="pill pill-blue">Playwright (TypeScript)</span>
+        <span class="pill pill-blue">Selenium WebDriver</span>
+        <span class="pill pill-blue">Cucumber BDD</span>
+        <span class="pill pill-blue">JUnit</span>
+        <span class="pill pill-blue">TestNG</span>
+        <span class="pill pill-blue">API Testing</span>
+        <span class="pill pill-blue">Postman</span>
+        <span class="pill pill-blue">Microservices Validation</span>
+        <span class="pill pill-blue">Tricentis Tosca</span>
+      </div>
+    </div>
+
+    <div class="skill-big-card ai">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-ai">🤖</div>
+        <div>
+          <div class="skill-cat-name">Generative AI & LLMs</div>
+          <div class="skill-cat-count">7 Technologies</div>
+        </div>
+      </div>
+      <div class="skill-pills">
+        <span class="pill pill-purple">LangChain</span>
+        <span class="pill pill-purple">RAG Pipelines</span>
+        <span class="pill pill-purple">Generative AI</span>
+        <span class="pill pill-purple">AI-Assisted Testing</span>
+        <span class="pill pill-purple">Prompt Engineering</span>
+        <span class="pill pill-purple">LLM Integration</span>
+        <span class="pill pill-purple">Vector Databases</span>
+      </div>
+    </div>
+
+    <div class="skill-big-card lang">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-lang">💻</div>
+        <div>
+          <div class="skill-cat-name">Programming Languages</div>
+          <div class="skill-cat-count">4 Languages</div>
+        </div>
+      </div>
+      <div class="skill-pills">
+        <span class="pill pill-green">TypeScript</span>
+        <span class="pill pill-green">Core Java</span>
+        <span class="pill pill-green">Gherkin</span>
+        <span class="pill pill-green">MySQL</span>
+      </div>
+    </div>
+
+    <div class="skill-big-card tools">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon icon-tools">⚙️</div>
+        <div>
+          <div class="skill-cat-name">DevOps & Tools</div>
+          <div class="skill-cat-count">5 Tools</div>
+        </div>
+      </div>
+      <div class="skill-pills">
+        <span class="pill pill-pink">GitHub</span>
+        <span class="pill pill-pink">CircleCI</span>
+        <span class="pill pill-pink">JIRA</span>
+        <span class="pill pill-pink">CI/CD Pipelines</span>
+        <span class="pill pill-pink">Agile / Scrum</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sec-divider"></div>
+
+<!-- ABOUT -->
+<div class="section-wrap fade-in" id="about">
+  <div class="sec-eyebrow">// 02. About Me</div>
+  <div class="sec-title">Who I Am</div>
+  <div class="about-grid">
+    <div class="gcard about-card">
+      <p>I'm a <strong>Senior Software Engineer – QA Automation</strong> with 4+ years of hands-on experience engineering large-scale test automation frameworks for business-critical e-commerce platforms. Based in <span class="grad">Hyderabad, India</span>, I work at <strong>QualiZeal Technologies</strong> where I own the full automation strategy end-to-end.</p>
+      <p>I specialize in <strong>Playwright (TypeScript)</strong> and <strong>Java Selenium</strong> — crafting scalable, data-driven frameworks integrated into CI/CD pipelines. From live selling modules and real-time inventory to payment flows and complete order lifecycles, I've automated it all with <strong>90%+ coverage</strong> and <strong>85–90% reduction in manual effort</strong>.</p>
+      <p>Beyond QA, I actively explore <span class="grad">Generative AI</span> — building with LangChain, RAG pipelines, and LLM integrations. I believe AI-assisted testing is the future of quality engineering, and I'm building toward it every single day.</p>
+      <p>Proud <strong>3× Rock Star Award winner</strong> at QualiZeal — recognized for consistently high-quality delivery and meaningful team growth.</p>
+    </div>
+    <div class="stats-col">
+      <div class="gcard mini-stat">
+        <div class="mini-stat-num">1000+</div>
+        <div>
+          <div class="mini-stat-label">Test Scripts Written</div>
+          <div class="mini-stat-sub">Playwright + Selenium combined</div>
+        </div>
+      </div>
+      <div class="gcard mini-stat">
+        <div class="mini-stat-num g">90%+</div>
+        <div>
+          <div class="mini-stat-label">Automation Coverage</div>
+          <div class="mini-stat-sub">Across all core e-commerce flows</div>
+        </div>
+      </div>
+      <div class="gcard mini-stat">
+        <div class="mini-stat-num o">85–90%</div>
+        <div>
+          <div class="mini-stat-label">Manual Effort Reduced</div>
+          <div class="mini-stat-sub">Via modular reusable frameworks</div>
+        </div>
+      </div>
+      <div class="gcard mini-stat">
+        <div class="mini-stat-num b">150+</div>
+        <div>
+          <div class="mini-stat-label">Critical Defects Found</div>
+          <div class="mini-stat-sub">98% defect closure rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-divider"></div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap fade-in" id="experience">
+  <div class="sec-eyebrow">// 03. Experience</div>
+  <div class="sec-title">Work History</div>
+  <div class="exp-stack">
+
+    <div class="gcard exp-gcard">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Senior Software Engineer – QA Automation</div>
+          <div class="exp-company">QualiZeal Technologies India Pvt. Ltd. — Hyderabad</div>
+        </div>
+        <span class="exp-chip chip-live">● Currently Working</span>
+      </div>
+      <div class="exp-when">October 2025 – Present</div>
+      <ul class="exp-ul">
+        <li>Own end-to-end automation strategy and execution for business-critical e-commerce workflows using Playwright (TypeScript) and Java Selenium.</li>
+        <li>Design, enhance, and maintain scalable, reusable, data-driven automation frameworks fully integrated with CI/CD pipelines.</li>
+        <li>Automate complex high-impact scenarios: live selling modules, payouts, real-time inventory updates, and complete order lifecycle validations.</li>
+        <li>Lead defect triage, ensuring early identification and resolution of high-severity issues prior to every production release.</li>
+        <li>Mentor junior QA engineers, conduct code reviews, and enforce automation best practices across the team.</li>
+        <li>Collaborate with developers, product owners, and stakeholders to continuously improve test strategy and release quality.</li>
+      </ul>
+    </div>
+
+    <div class="gcard exp-gcard">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Software Engineer – QA Automation</div>
+          <div class="exp-company">QualiZeal Technologies India Pvt. Ltd. — Hyderabad</div>
+        </div>
+        <span class="exp-chip chip-past">3+ Years</span>
+      </div>
+      <div class="exp-when">May 2022 – October 2025</div>
+      <div class="kpi-row">
+        <div class="kpi"><span class="kpi-v p">1000+</span><span class="kpi-l">Test Scripts</span></div>
+        <div class="kpi"><span class="kpi-v g">90%+</span><span class="kpi-l">Coverage</span></div>
+        <div class="kpi"><span class="kpi-v o">85–90%</span><span class="kpi-l">Manual Effort Saved</span></div>
+        <div class="kpi"><span class="kpi-v b">200+</span><span class="kpi-l">E2E Test Cases</span></div>
+        <div class="kpi"><span class="kpi-v g">98%</span><span class="kpi-l">Defect Closure</span></div>
+        <div class="kpi"><span class="kpi-v o">150+</span><span class="kpi-l">Defects Found</span></div>
+      </div>
+      <ul class="exp-ul">
+        <li>Developed and executed <strong>1000+ automation test scripts</strong> using Playwright, Selenium, Cucumber, TestNG, and JUnit — achieving <strong>90%+ automation coverage</strong>.</li>
+        <li>Automated <strong>200+ end-to-end test cases</strong> covering login, product listing, cart, checkout, payment, and order management flows.</li>
+        <li>Reduced manual testing effort by <strong>85–90%</strong> through modular, reusable, data-driven frameworks.</li>
+        <li>Built <strong>100+ Playwright scripts</strong> validating live selling modules, payouts, and real-time inventory updates.</li>
+        <li>Automated <strong>50+ Java Selenium test cases</strong> for product search, filter, cart, and coupons — maintaining a <strong>95% regression pass rate</strong>.</li>
+        <li>Created <strong>20+ BDD workflows</strong> with Gherkin and Cucumber, enabling cross-functional collaboration.</li>
+        <li>Identified <strong>150+ critical defects</strong> contributing to a <strong>98% defect closure rate</strong> and zero critical production escapes.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="sec-divider"></div>
+
+<!-- PROJECTS -->
+<div class="section-wrap fade-in" id="projects">
+  <div class="sec-eyebrow">// 04. Projects</div>
+  <div class="sec-title">What I've Built</div>
+  <div class="proj-grid">
+
+    <div class="gcard proj-gcard">
+      <div class="proj-glow glow-blue"></div>
+      <div class="proj-num">Project 01</div>
+      <div class="proj-name">E-Commerce Automation Suite</div>
+      <div class="proj-desc">Full-scale automation framework covering all critical user journeys — product discovery to order fulfillment — on a live enterprise e-commerce platform.</div>
+      <ul class="proj-highlights">
+        <li>200+ E2E test cases: login, cart, checkout, payment, orders</li>
+        <li>100+ Playwright scripts for live selling &amp; inventory</li>
+        <li>20+ BDD workflows with Gherkin + Cucumber</li>
+        <li>95% stable regression pass rate | 90%+ coverage</li>
+      </ul>
+      <div class="proj-pills">
+        <span class="proj-pill">Playwright</span>
+        <span class="proj-pill">TypeScript</span>
+        <span class="proj-pill">Java Selenium</span>
+        <span class="proj-pill">Cucumber</span>
+        <span class="proj-pill">CircleCI</span>
+      </div>
+    </div>
+
+    <div class="gcard proj-gcard">
+      <div class="proj-glow glow-purple"></div>
+      <div class="proj-num">Project 02</div>
+      <div class="proj-name">RAG-Powered Document Q&amp;A Bot</div>
+      <div class="proj-desc">Intelligent Q&amp;A system built with LangChain and RAG architecture — retrieves context from documents and generates accurate, grounded responses via LLMs.</div>
+      <ul class="proj-highlights">
+        <li>LangChain pipeline with semantic vector retrieval</li>
+        <li>Multi-document knowledge base support</li>
+        <li>Exploring AI-assisted test case generation</li>
+      </ul>
+      <div class="proj-pills">
+        <span class="proj-pill">LangChain</span>
+        <span class="proj-pill">RAG</span>
+        <span class="proj-pill">Python</span>
+        <span class="proj-pill">Vector DB</span>
+        <span class="proj-pill">GenAI</span>
+      </div>
+    </div>
+
+    <div class="gcard proj-gcard">
+      <div class="proj-glow glow-pink"></div>
+      <div class="proj-num">Project 03</div>
+      <div class="proj-name">Modular Test Framework Design</div>
+      <div class="proj-desc">Reusable, data-driven framework architecture boosting code reusability by 30% and cutting execution time through parallelization and smart design patterns.</div>
+      <ul class="proj-highlights">
+        <li>30% improvement in code reusability</li>
+        <li>Data-driven execution with TestNG + JUnit</li>
+        <li>CI/CD integrated for fast feedback loops</li>
+      </ul>
+      <div class="proj-pills">
+        <span class="proj-pill">Java</span>
+        <span class="proj-pill">TestNG</span>
+        <span class="proj-pill">JUnit</span>
+        <span class="proj-pill">GitHub</span>
+        <span class="proj-pill">CI/CD</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sec-divider"></div>
+
+<!-- AWARDS -->
+<div class="section-wrap fade-in" id="awards">
+  <div class="sec-eyebrow">// 05. Awards & Certifications</div>
+  <div class="sec-title">Recognition</div>
+
+  <div class="gcard award-gcard">
+    <div class="award-icon-wrap">🏆</div>
+    <div>
+      <div class="award-title">Rock Star Award — 3× Winner</div>
+      <div class="award-org">QualiZeal Technologies India Pvt. Ltd.</div>
+      <div class="award-body">Recognized as Best Performer for three separate quarters — for consistently delivering high-quality automation work, meeting critical deadlines, and demonstrating significant professional growth that raised the bar for the entire team.</div>
+      <div class="award-tags">
+        <span class="award-tag">Q1 · Mar–Jun 2023</span>
+        <span class="award-tag">Q3 · Jul–Sep 2024</span>
+        <span class="award-tag">Q3 · Jul–Sep 2025</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gcard cert-gcard">
+    <div class="cert-icon-wrap">📜</div>
+    <div>
+      <div class="cert-name">Tricentis Tosca Product Consultant Certification</div>
+      <div class="cert-by">Tricentis · Certified Professional</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-divider"></div>
+
+<!-- CONTACT -->
+<div class="section-wrap fade-in" id="contact">
+  <div class="sec-eyebrow">// 06. Contact</div>
+  <div class="sec-title">Let's Connect</div>
+  <div class="contact-grid">
+
+    <a href="mailto:nikhileshdubey9936@gmail.com" class="contact-card">
+      <div class="contact-icon ci-pink">✉️</div>
+      <div class="contact-platform">Email</div>
+      <div class="contact-val">nikhileshdubey9936@gmail.com</div>
+    </a>
+
+    <a href="https://linkedin.com/in/nikhilesh-kumar-dubey-6450a2138" class="contact-card" target="_blank">
+      <div class="contact-icon ci-blue">💼</div>
+      <div class="contact-platform">LinkedIn</div>
+      <div class="contact-val">nikhilesh-kumar-dubey</div>
+    </a>
+
+    <a href="https://github.com/nikhilesh9446" class="contact-card" target="_blank">
+      <div class="contact-icon ci-purple">🐙</div>
+      <div class="contact-platform">GitHub</div>
+      <div class="contact-val">nikhilesh9446</div>
+    </a>
+
+    <a href="tel:+919936397289" class="contact-card">
+      <div class="contact-icon ci-green">📱</div>
+      <div class="contact-platform">Phone</div>
+      <div class="contact-val">+91 99363 97289</div>
+    </a>
+
+    <a href="#" class="contact-card">
+      <div class="contact-icon ci-orange">📍</div>
+      <div class="contact-platform">Location</div>
+      <div class="contact-val">Hyderabad, Telangana, India</div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  Built by <span class="grad">Nikhilesh Kumar Dubey</span> &nbsp;·&nbsp; Senior SWE – QA Automation &amp; GenAI &nbsp;·&nbsp; Hyderabad, India
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.07 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
