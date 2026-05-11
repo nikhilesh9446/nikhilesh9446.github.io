@@ -727,11 +727,12 @@ function sendMsg(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){show('Enter a valid email address.','err');return}
   btn.textContent='Sending...';btn.disabled=true;gsap.to(btn,{opacity:.65,duration:.2});
   setTimeout(()=>{
-    window.location.href=`mailto:nikhileshdubey9936@gmail.com?subject=Portfolio message from ${encodeURIComponent(n)}&body=${encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m)}`;
+    const gmailUrl = https://mail.google.com/mail/?view=cm&fs=1&to=nikhileshdubey9936@gmail.com&su=${encodeURIComponent('Portfolio message from '+n)}&body=${encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m)};
+    window.open(gmailUrl,'_blank');
     btn.textContent='Sent';gsap.to(btn,{opacity:1,background:'#00a86b',duration:.3});
-    show('Mail client opened — ready to send!','ok');
+    show('Gmail compose opened in a new tab.','ok');
     document.getElementById('cfn').value='';document.getElementById('cfe').value='';document.getElementById('cfm').value='';
-    setTimeout(()=>{btn.textContent='Send message ↗';btn.disabled=false;gsap.to(btn,{background:'var(--violet)',duration:.4})},5000);
+    setTimeout(()=>{btn.textContent='Send message ↗️';btn.disabled=false;gsap.to(btn,{background:'var(--violet)',duration:.4})},5000);
   },700);
 }
 document.querySelectorAll('.cf-f input,.cf-f textarea').forEach(el=>{
