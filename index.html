@@ -561,12 +561,12 @@ footer{padding:20px 52px;border-top:1px solid rgba(155,93,229,.08);display:flex;
       <h3>Got a project in mind?</h3>
       <p>Open to full-time roles, freelance projects, and AI/testing collaborations. Drop a message — I respond within 24 hours.</p>
       <div class="clinks">
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nikhileshdubey9936@gmail.com" target="_blank" rel="noopener" class="cl">
+        <a href="mailto:nikhileshdubey9936@gmail.com" class="cl">
           <span class="cl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
           <span class="cl-label">Email</span>
           <span class="cl-val">nikhileshdubey9936@gmail.com</span>
         </a>
-        <a href="https://www.linkedin.com/in/nikhilesh-kumar-dubey-6450a2138/" target="_blank" rel="noopener" class="cl">
+        <a href="https://www.linkedin.com/in/nikhilesh-kumar-dubey/" target="_blank" rel="noopener" class="cl">
           <span class="cl-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
           <span class="cl-label">LinkedIn</span>
           <span class="cl-val">nikhilesh-kumar-dubey</span>
@@ -727,12 +727,11 @@ function sendMsg(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){show('Enter a valid email address.','err');return}
   btn.textContent='Sending...';btn.disabled=true;gsap.to(btn,{opacity:.65,duration:.2});
   setTimeout(()=>{
-    const gmailUrl = https://mail.google.com/mail/?view=cm&fs=1&to=nikhileshdubey9936@gmail.com&su=${encodeURIComponent('Portfolio message from '+n)}&body=${encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m)};
-    window.open(gmailUrl,'_blank');
+    window.location.href=`mailto:nikhileshdubey9936@gmail.com?subject=Portfolio message from ${encodeURIComponent(n)}&body=${encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m)}`;
     btn.textContent='Sent';gsap.to(btn,{opacity:1,background:'#00a86b',duration:.3});
-    show('Gmail compose opened in a new tab.','ok');
+    show('Mail client opened — ready to send!','ok');
     document.getElementById('cfn').value='';document.getElementById('cfe').value='';document.getElementById('cfm').value='';
-    setTimeout(()=>{btn.textContent='Send message ↗️';btn.disabled=false;gsap.to(btn,{background:'var(--violet)',duration:.4})},5000);
+    setTimeout(()=>{btn.textContent='Send message ↗';btn.disabled=false;gsap.to(btn,{background:'var(--violet)',duration:.4})},5000);
   },700);
 }
 document.querySelectorAll('.cf-f input,.cf-f textarea').forEach(el=>{
